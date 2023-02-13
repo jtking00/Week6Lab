@@ -27,6 +27,8 @@ public class ShoppingListServlet extends HttpServlet {
         String action = request.getParameter("action");
         switch(action){
             case "logout":{
+                session.invalidate();
+                response.sendRedirect("/WEB-INF/register.jsp");
                 break;
             }
             case "register":{

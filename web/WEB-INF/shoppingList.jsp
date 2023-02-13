@@ -16,10 +16,12 @@
         <br>
         <h3>Hello ${username}</h3>
         <br>
+        <a href="ShoppingList" name="action" value="logout">Log Out</a>
+        <br>
         <h2>List</h2>
         <form>
             Add Item: <input type="text" name=""><br>
-        <input type="submti" name="action" value="Add">
+        <input type="submit" name="action" value="add">
         </form>
     </body>
 </html>
