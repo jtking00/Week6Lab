@@ -17,5 +17,6 @@
             Username: <input type="text" name="username">
             <input type="submit" name="action" value="register">
         </form>
+        ${infoMsg}
     </body>
 </html>
