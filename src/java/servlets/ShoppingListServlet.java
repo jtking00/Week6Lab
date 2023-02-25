@@ -25,29 +25,37 @@ public class ShoppingListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        ArrayList<String> items = new ArrayList();
-        session.setAttribute("itemArray", items);
+        ArrayList<String> items;
         String action = request.getParameter("action");
         switch(action){
-            case "logout":{
+            case "Logout":{
                 session.invalidate();
                 response.sendRedirect("/WEB-INF/register.jsp");
                 break;
             }
-            case "register":{
+            case "Register":{
+                items = new ArrayList();
+                session.setAttribute("itemArray", items);
                 String username = request.getParameter("username");
                 session.setAttribute("username", username);
                 getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
                 break;
             }
-            case "add":{
+            case "Add":{
+                items = (ArrayList<String>)session.getAttribute("itemArray");
                 String newItem = request.getParameter("newItem");
                 items.add(newItem);
                 session.setAttribute("itemArray", items);
                 getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
                 break;
             }
-            case "delete":{
+            case "Delete":{
+                items = (ArrayList<String>)session.getAttribute("itemArray");
+                String deleteIndex = request.getParameter("listItem");
+                int index = Integer.parseInt(deleteIndex);
+                items.remove(index);
+                session.setAttribute("itemArray", items);
+                getServletContext().getRequestDispatcher("/WEB-INF/shoppingList.jsp").forward(request, response);
                 break;
             }
         }
